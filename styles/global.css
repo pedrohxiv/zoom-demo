@@ -36,3 +36,37 @@
     @apply bg-background text-[#C9DDFF];
   }
 }
+
+.cl-userButtonPopoverActionButton,
+.cl-userButtonPopoverActionButton:hover {
+  color: white;
+}
+
+.cl-logoBox {
+  height: 40px;
+}
+
+.cl-dividerLine {
+  background: #252a41;
+  height: 2px;
+}
+
+.cl-formButtonPrimary {
+  background-color: #0e78f9;
+}
+
+.cl-socialButtonsIconButton {
+  border: 3px solid #565761;
+}
+
+.cl-socialButtonsBlockButtonText {
+  color: white;
+}
+
+.cl-internal-wkkub3 {
+  color: white;
+}
+
+.cl-userButtonPopoverActionButton {
+  color: white;
+}
