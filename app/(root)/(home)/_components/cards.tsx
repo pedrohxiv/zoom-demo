@@ -1,9 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-import Image from "next/image";
+import { Modal } from "@/components/modal";
 
 export const Cards = () => {
   const [meeting, setMeeting] = useState<
@@ -11,6 +12,8 @@ export const Cards = () => {
   >();
 
   const router = useRouter();
+
+  const createMeeting = () => {};
 
   return (
     <section className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
@@ -82,6 +85,14 @@ export const Cards = () => {
           <p className="text-lg font-normal">Meeting recordings</p>
         </div>
       </div>
+      <Modal
+        isOpen={meeting === "isInstant"}
+        onClose={() => setMeeting(undefined)}
+        title="Start an instant meeting"
+        className="text-center"
+        onClick={createMeeting}
+        text="Start Meeting"
+      />
     </section>
   );
 };
