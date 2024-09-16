@@ -2,6 +2,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
+import { Toaster } from "@/components/providers/toaster";
 import "@/styles/global.css";
 
 const font = Inter({ subsets: ["latin"] });
@@ -29,7 +30,10 @@ const AppLayout = ({ children }: Props) => {
       }}
     >
       <html>
-        <body className={font.className}>{children}</body>
+        <body className={font.className}>
+          {children}
+          <Toaster />
+        </body>
       </html>
     </ClerkProvider>
   );

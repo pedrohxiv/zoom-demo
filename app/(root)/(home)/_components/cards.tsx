@@ -1,19 +1,70 @@
 "use client";
 
+import { Call, useStreamVideoClient } from "@stream-io/video-react-sdk";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import { Modal } from "@/components/modal";
+import { useToast } from "@/hooks/use-toast";
 
 export const Cards = () => {
+  const [callDetails, setCallDetails] = useState<Call>();
   const [meeting, setMeeting] = useState<
     "isSchedule" | "isJoining" | "isInstant" | undefined
   >();
+  const [values, setValues] = useState<{
+    dateTime: Date;
+    description: string;
+    link: string;
+  }>({
+    dateTime: new Date(),
+    description: "",
+    link: "",
+  });
 
+  const { toast } = useToast();
+
+  const client = useStreamVideoClient();
   const router = useRouter();
 
-  const createMeeting = () => {};
+  const createMeeting = async () => {
+    try {
+      if (!client || !values.dateTime) {
+        return toast({
+          variant: "destructive",
+          title: "Uh oh! Something went wrong.",
+          description: "There was a problem with your request.",
+        });
+      }
+
+      const call = client.call("default", crypto.randomUUID());
+
+      await call.getOrCreate({
+        data: {
+          starts_at:
+            values.dateTime.toISOString() || new Date(Date.now()).toISOString(),
+          custom: {
+            description: values.description || "Instant meeting",
+          },
+        },
+      });
+
+      setCallDetails(call);
+
+      if (!values.description) {
+        router.push(`/meeting/${call.id}`);
+      }
+    } catch (error) {
+      console.error(error);
+
+      return toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        description: "There was a problem with your request.",
+      });
+    }
+  };
 
   return (
     <section className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
