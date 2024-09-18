@@ -2,6 +2,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import "@stream-io/video-react-sdk/dist/css/style.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import "react-datepicker/dist/react-datepicker.css";
 
 import { Toaster } from "@/components/providers/toaster";
 import "@/styles/global.css";
