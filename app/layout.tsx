@@ -1,5 +1,5 @@
 import { ClerkProvider } from "@clerk/nextjs";
-import "@stream-io/video-react-sdk/dist/css/style.css";
+import "@stream-io/video-react-sdk/dist/css/styles.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "react-datepicker/dist/react-datepicker.css";
@@ -11,6 +11,7 @@ const font = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Zoom",
+  icons: { icon: "/icons/logo.svg" },
 };
 
 interface Props {

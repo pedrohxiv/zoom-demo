@@ -144,7 +144,8 @@ export const Cards = () => {
         <Modal
           isOpen={meeting === "isSchedule"}
           onClose={() => setMeeting(undefined)}
-          title="Create Meeting"
+          title="Schedule Meeting"
+          text="Schedule"
           onClick={createMeeting}
         >
           <div className="flex flex-col gap-2.5">

@@ -10,8 +10,6 @@ export const useGetCalls = () => {
 
   const client = useStreamVideoClient();
 
-  const now = new Date();
-
   useEffect(() => {
     if (!client || !user?.id) {
       return;
@@ -19,34 +17,23 @@ export const useGetCalls = () => {
 
     (async () => {
       const { calls } = await client.queryCalls({
-        sort: [
-          {
-            field: "starts_at",
-            direction: -1,
-          },
-        ],
+        sort: [{ field: "starts_at", direction: -1 }],
         filter_conditions: {
-          start_at: {
-            $exists: true,
-          },
+          starts_at: { $exists: true },
           $or: [
-            {
-              created_by_user_id: user.id,
-            },
-            {
-              members: { $in: [user.id] },
-            },
+            { created_by_user_id: user.id },
+            { members: { $in: [user.id] } },
           ],
         },
       });
 
-      if (calls.length > 0) {
-        setCalls(calls);
-      }
+      setCalls(calls);
 
       setIsLoading(false);
     })();
   }, [client]);
+
+  const now = new Date();
 
   return {
     endedCalls: calls.filter(({ state: { startsAt, endedAt } }) => {

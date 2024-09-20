@@ -67,10 +67,14 @@ export const CallList = ({ type }: Props) => {
         setRecordings(recordings);
       })();
     }
-  }, []);
+  }, [type, recordingCalls]);
 
   if (isLoading) {
-    return <Loader2 className="size-5 animate-spin" />;
+    return (
+      <div className="w-full h-[calc(100vh-250px)] flex items-center justify-center">
+        <Loader2 className="size-5 animate-spin" />
+      </div>
+    );
   }
 
   const calls = getCalls();

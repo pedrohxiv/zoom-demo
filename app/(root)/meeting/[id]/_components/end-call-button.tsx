@@ -32,7 +32,7 @@ export const EndCallButton = () => {
   }
 
   return (
-    <Button onClick={handleClick} className="bg-red-500">
+    <Button onClick={handleClick} className="bg-red-500 hover:bg-red-500/80">
       End call for everyone
     </Button>
   );
