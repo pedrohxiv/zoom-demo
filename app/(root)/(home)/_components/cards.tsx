@@ -7,6 +7,7 @@ import { useState } from "react";
 import ReactDatePicker from "react-datepicker";
 
 import { Modal } from "@/components/modal";
+import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 
@@ -198,6 +199,20 @@ export const Cards = () => {
         onClick={createMeeting}
         text="Start Meeting"
       />
+      <Modal
+        isOpen={meeting === "isJoining"}
+        onClose={() => setMeeting(undefined)}
+        title="Type the link here"
+        className="text-center"
+        onClick={() => router.push(values.link)}
+        text="Join Meeting"
+      >
+        <Input
+          placeholder="Meeting link"
+          className="border-none bg-[#252A41] focus-visible:ring-0 focus-visible:ring-offset-0"
+          onChange={(e) => setValues({ ...values, link: e.target.value })}
+        />
+      </Modal>
     </section>
   );
 };
